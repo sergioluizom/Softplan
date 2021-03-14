@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace Softplan.Model.Entities
+﻿namespace Softplan.Model.Entities
 {
-    public class Country
+    public class Country : Entity
     {
-        public Guid Id { get; set; }
-        public decimal Area { get; set; }
-        public decimal Population { get; set; }
+        public decimal? Area { get; set; }
+        public decimal? Population { get; set; }
         public string Capital { get; set; }
 
     }

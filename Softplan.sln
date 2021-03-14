@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Softplan.Utils", "Softplan.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Softplan.API", "Softplan.API\Softplan.API.csproj", "{C1A180B1-3731-4F7E-8EDC-2F8D5FDD9624}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Softplan.Model", "Softplan.Model\Softplan.Model.csproj", "{A94BA0E7-6372-4A5A-8D07-6EFF177EB105}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Softplan.Domain", "Softplan.Model\Softplan.Domain.csproj", "{A94BA0E7-6372-4A5A-8D07-6EFF177EB105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softplan.Repository", "Softplan.Repository\Softplan.Repository.csproj", "{350CBDD6-7671-4750-ABD9-1EC1A2B098B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Softplan.Repository", "Softplan.Repository\Softplan.Repository.csproj", "{350CBDD6-7671-4750-ABD9-1EC1A2B098B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softplan.Infra", "Softplan.Infra\Softplan.Infra.csproj", "{CF6964DE-CC55-46A4-AE19-43B0DF3CE868}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Softplan.Infra", "Softplan.Infra\Softplan.Infra.csproj", "{CF6964DE-CC55-46A4-AE19-43B0DF3CE868}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

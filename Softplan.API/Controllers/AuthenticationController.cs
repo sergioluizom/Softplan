@@ -2,9 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Softplan.Infra.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Softplan.API.Controllers
 {
@@ -31,18 +28,14 @@ namespace Softplan.API.Controllers
         }
 
         [HttpPost]
-        [Route("login")]
-        public ActionResult<dynamic> Authenticate()
+        [Route("GetToken")]
+        public ActionResult<dynamic> GetToken()
         {
             try
             {
-                logger.LogInformation("Chamada de Authentication.Authenticate");
-
+                logger.LogInformation("Chamada de Authentication.GetToken");
                 // Gera o Token
-                var token = tokenService.GenerateToken();
-
-                // Retorna os dados
-                return new { token = token };
+                return tokenService.GenerateToken();
             }
             catch (Exception ex)
             {

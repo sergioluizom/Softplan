@@ -32,10 +32,8 @@ namespace Softplan.Utils.Configuration
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = appSettings.Audience,
-                    ValidIssuer = appSettings.Issuer
+                    ValidateIssuer = false,
+                    ValidateAudience = false
                 };
             });
 

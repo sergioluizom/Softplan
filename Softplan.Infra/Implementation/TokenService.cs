@@ -21,13 +21,11 @@ namespace Softplan.Infra.Implementation
             var key = Encoding.ASCII.GetBytes(configuration["apiToken"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Issuer = "SCA",
-                Audience = "https://localhost",
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, ""),
-                    new Claim(ClaimTypes.Role, "")
-                }),
+                //Subject = new ClaimsIdentity(new Claim[]
+                //{
+                //    new Claim(ClaimTypes.Name, "public"),
+                //    new Claim(ClaimTypes.Role, "public")
+                //}),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

@@ -32,7 +32,9 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
-        "apiToken": "8PWXRe3djyDa7ttHfGvQm8epNtyoRMJFEwvK"
+        "apiToken": "d170305cc0e3c3c7704ecae447579724d7134c14",
+        "connectionString": "Server=.\\\\SQLEXPRESS;Database=SoftplanDatabase;User Id=application;Password=password;MultipleActiveResultSets=true;",
+        "graphApi": "https://countries-274616.ew.r.appspot.com"
       },
       "publishAllPorts": true,
       "useSSL": true

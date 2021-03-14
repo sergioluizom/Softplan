@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Softplan.Domain.Services.Interfaces;
+using Softplan.Model.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,13 +10,37 @@ namespace Softplan.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CountryController : ControllerBase
     {
+        private readonly ICountryService _countryService;
+
+        public CountryController(ICountryService countryService)
+        {
+            _countryService = countryService;
+        }
         // GET: api/<CountryController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Country> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _countryService.Get();
+        }
+
+        // GET: api/GetByName
+        [HttpGet]
+        [Route("GetByName")]
+        public Country GetByName([FromQuery] string name)
+        {
+            return _countryService.GetByName(name);
+        }
+
+
+        // GET: api/GetByCapital
+        [HttpGet]
+        [Route("GetByCapital")]
+        public Country GetByCapital([FromQuery] string capital)
+        {
+            return _countryService.GetByCapital(capital);
         }
 
         // GET api/<CountryController>/5

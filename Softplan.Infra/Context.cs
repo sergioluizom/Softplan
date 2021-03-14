@@ -1,19 +1,24 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Softplan.Infra.EntityConfig;
 using Softplan.Model.Entities;
-using System.Collections.Generic;
+using System.Reflection;
 
 namespace Softplan.Infra
 {
-    public class Context
-    {
-        private readonly IConfiguration configuration;
-
-        public Context(IConfiguration configuration)
+    public class Context : DbContext
+    {   
+        public Context(DbContextOptions<Context> options) : base(options)
         {
-            this.configuration = configuration;
         }
 
-        public IEnumerable<Country> Countrys { get; set; }
-        public IEnumerable<CountryV2> CountrysV2 { get; set; }
+        public DbSet<Country> Countrys { get; set; }
+        public DbSet<CountryV2> CountrysV2 { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CountryConfig).GetTypeInfo().Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OfficialLanguageConfig).GetTypeInfo().Assembly);            
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

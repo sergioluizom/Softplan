@@ -1,8 +1,13 @@
+using GraphQL.Client.Abstractions;
+using GraphQL.Client.Http;
+using GraphQL.Client.Serializer.Newtonsoft;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Softplan.API.Config;
+using Softplan.Infra;
 using Softplan.Utils.Configuration;
 
 namespace Softplan.API
@@ -19,6 +24,8 @@ namespace Softplan.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration["connectionString"]));
+            services.AddScoped<IGraphQLClient>(s => new GraphQLHttpClient(Configuration["graphApi"], new NewtonsoftJsonSerializer()));
             services.ResolveDependencies();
             services.ResolveSwagger();
             services.AddIdentityConfiguration(Configuration);
@@ -33,7 +40,6 @@ namespace Softplan.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseIdentityConfiguration();
 
             app.UseEndpoints(endpoints =>
