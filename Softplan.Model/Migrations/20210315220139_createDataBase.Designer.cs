@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Softplan.Infra;
+using Softplan.Domain;
 
-namespace Softplan.Infra.Migrations
+namespace Softplan.Domain.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210313005219_StartDatabase")]
-    partial class StartDatabase
+    [Migration("20210315220139_createDataBase")]
+    partial class createDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,8 @@ namespace Softplan.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Area")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<double?>("Area")
+                        .HasColumnType("float");
 
                     b.Property<string>("Capital")
                         .HasColumnType("nvarchar(max)");
@@ -37,8 +37,8 @@ namespace Softplan.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Population")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<double?>("Population")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

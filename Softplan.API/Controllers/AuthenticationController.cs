@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Softplan.Infra.Interfaces;
+using Softplan.Domain.Services.Interfaces;
 using System;
 
 namespace Softplan.API.Controllers

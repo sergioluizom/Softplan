@@ -1,19 +1,28 @@
 ﻿using GraphQL;
 using GraphQL.Client.Abstractions;
+using Softplan.Domain.Repository.Interfaces;
 using Softplan.Domain.Response;
 using Softplan.Domain.Services.Interfaces;
 using Softplan.Model.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Softplan.Domain.Services.Implementation
 {
     public class CountryService : ICountryService
     {
         private readonly IGraphQLClient _client;
-        public CountryService(IGraphQLClient client)
+        private readonly ICountryRepository countryRepository;
+        public CountryService(IGraphQLClient client, ICountryRepository countryRepository)
         {
             _client = client;
+            this.countryRepository = countryRepository;
+        }
+
+        public Task<bool> Add(Country country)
+        {
+            throw new System.NotImplementedException();
         }
 
         public List<Country> Get()

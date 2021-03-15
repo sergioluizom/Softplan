@@ -2,8 +2,8 @@
 {
     public class Country : Entity
     {
-        public decimal? Area { get; set; }
-        public decimal? Population { get; set; }
+        public double? Area { get; set; }
+        public double? Population { get; set; }
         public string Capital { get; set; }
 
     }

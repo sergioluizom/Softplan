@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Softplan.Infra.EntityConfig;
+using Softplan.Domain.EntityConfig;
 using Softplan.Model.Entities;
 using System.Reflection;
 
-namespace Softplan.Infra
+namespace Softplan.Domain
 {
     public class Context : DbContext
-    {   
+    {
         public Context(DbContextOptions<Context> options) : base(options)
         {
         }
@@ -17,7 +17,7 @@ namespace Softplan.Infra
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CountryConfig).GetTypeInfo().Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OfficialLanguageConfig).GetTypeInfo().Assembly);            
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OfficialLanguageConfig).GetTypeInfo().Assembly);
             base.OnModelCreating(modelBuilder);
         }
     }

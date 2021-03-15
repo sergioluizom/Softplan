@@ -1,4 +1,4 @@
-﻿namespace Softplan.Infra.Interfaces
+﻿namespace Softplan.Domain.Services.Interfaces
 {
     public interface ITokenService
     {

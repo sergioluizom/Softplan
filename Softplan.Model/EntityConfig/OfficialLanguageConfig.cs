@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Softplan.Model.Entities;
 
-namespace Softplan.Infra.EntityConfig
+namespace Softplan.Domain.EntityConfig
 {
     public class OfficialLanguageConfig : IEntityTypeConfiguration<OfficialLanguage>
     {

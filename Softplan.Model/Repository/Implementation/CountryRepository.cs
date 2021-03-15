@@ -1,14 +1,20 @@
 ﻿using Softplan.Model.Entities;
-using Softplan.Repository.Interfaces;
+using Softplan.Domain.Repository.Interfaces;
 using System.Threading.Tasks;
 
-namespace Softplan.Repository.Implementation
+namespace Softplan.Domain.Repository.Implementation
 {
     public class CountryRepository : ICountryRepository
     {
-        public Task<bool> Add(Country country)
+        private readonly Context context;
+        public CountryRepository(Context context)
         {
-            throw new System.NotImplementedException();
+            this.context = context;
+        }
+        public async Task<bool> Add(Country country)
+        {
+            context.Countrys.Add(country);
+            return await context.SaveChangesAsync() > 0;
         }
 
         public Task<bool> AddV2(CountryV2 country)

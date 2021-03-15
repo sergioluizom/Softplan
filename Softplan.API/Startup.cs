@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Softplan.API.Config;
-using Softplan.Infra;
+using Softplan.Domain;
 using Softplan.Utils.Configuration;
 
 namespace Softplan.API

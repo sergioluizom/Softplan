@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Softplan.Infra.Migrations
+namespace Softplan.Domain.Migrations
 {
-    public partial class StartDatabase : Migration
+    public partial class createDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace Softplan.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Area = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    Population = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Area = table.Column<double>(type: "float", nullable: true),
+                    Population = table.Column<double>(type: "float", nullable: true),
                     Capital = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

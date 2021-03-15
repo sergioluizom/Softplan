@@ -1,7 +1,7 @@
 ﻿using Softplan.Model.Entities;
 using System.Threading.Tasks;
 
-namespace Softplan.Repository.Interfaces
+namespace Softplan.Domain.Repository.Interfaces
 {
     public interface ICountryRepository
     {

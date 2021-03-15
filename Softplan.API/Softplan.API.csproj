@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Softplan.Infra\Softplan.Infra.csproj" />
+    <ProjectReference Include="..\Softplan.Model\Softplan.Domain.csproj" />
     <ProjectReference Include="..\Softplan.Utils\Softplan.Utils.csproj" />
   </ItemGroup>
 

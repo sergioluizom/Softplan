@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Softplan.Domain.Services.Interfaces;
 using Softplan.Model.Entities;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,8 +55,17 @@ namespace Softplan.API.Controllers
 
         // POST api/<CountryController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<HttpResponseMessage> Post([FromBody] Country country)
         {
+            try
+            {
+                await _countryService.Add(country);
+                return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // PUT api/<CountryController>/5
