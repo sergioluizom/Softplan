@@ -20,14 +20,25 @@ namespace Softplan.Domain.Services.Implementation
             this.countryRepository = countryRepository;
         }
 
-        public Task<bool> Add(Country country)
+        public async Task<bool> Add(Country country)
         {
-            throw new System.NotImplementedException();
+            return await countryRepository.Add(country);
         }
 
-        public List<Country> Get()
+        public async Task<bool> Update(Country country)
         {
-            var query = new GraphQLRequest
+            return await countryRepository.Update(country);
+        }
+
+        public async Task<bool> Delete(string id)
+        {
+            return await countryRepository.Delete(id);
+        }
+
+        public GraphQLRequest QueryGetCountry()
+        {
+
+            return new GraphQLRequest
             {
                 Query = @" query{
 Country {
@@ -88,12 +99,15 @@ Country {
     }
   }}"
             };
+        }
 
-            var respone = _client.SendQueryAsync<ResponseCountryCollection>(query).GetAwaiter().GetResult();
+        public List<Country> Get()
+        {
+            var respone = _client.SendQueryAsync<ResponseCountryCollection>(QueryGetCountry()).GetAwaiter().GetResult();
             return respone.Data.Country;
         }
 
-        public Country GetByCapital(string capitalName)
+        public async Task<Country> GetByCapital(string capitalName)
         {
             var query = new GraphQLRequest
             {
@@ -111,11 +125,11 @@ Country {
                 Variables = new { capitalName }
             };
 
-            var respone = _client.SendQueryAsync<ResponseCountryCollection>(query).GetAwaiter().GetResult();
+            var respone = await _client.SendQueryAsync<ResponseCountryCollection>(query);
             return respone.Data.Country.FirstOrDefault();
         }
 
-        public Country GetByName(string countryName)
+        public async Task<Country> GetByName(string countryName)
         {
             var query = new GraphQLRequest
             {
@@ -133,8 +147,13 @@ Country {
                 Variables = new { countryName }
             };
 
-            var respone = _client.SendQueryAsync<ResponseCountryCollection>(query).GetAwaiter().GetResult();
+            var respone = await _client.SendQueryAsync<ResponseCountryCollection>(query);
             return respone.Data.Country.FirstOrDefault();
+        }
+
+        public async Task<Country> FindById(string id)
+        {
+            return await countryRepository.FindById(id);
         }
     }
 }

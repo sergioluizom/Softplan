@@ -27,7 +27,7 @@ namespace Softplan.API.Controllers
             this.tokenService = tokenService;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetToken")]
         public ActionResult<dynamic> GetToken()
         {

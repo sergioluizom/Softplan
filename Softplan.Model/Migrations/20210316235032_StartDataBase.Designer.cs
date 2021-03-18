@@ -10,8 +10,8 @@ using Softplan.Domain;
 namespace Softplan.Domain.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210315220139_createDataBase")]
-    partial class createDataBase
+    [Migration("20210316235032_StartDataBase")]
+    partial class StartDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,9 @@ namespace Softplan.Domain.Migrations
 
             modelBuilder.Entity("Softplan.Model.Entities.Country", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double?>("Area")
                         .HasColumnType("float");
@@ -33,8 +33,7 @@ namespace Softplan.Domain.Migrations
                     b.Property<string>("Capital")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Population")
@@ -43,18 +42,16 @@ namespace Softplan.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countrys");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Country");
                 });
 
             modelBuilder.Entity("Softplan.Model.Entities.OfficialLanguage", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("CountryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CountryId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Iso639_1")
                         .HasColumnType("nvarchar(max)");
@@ -72,28 +69,19 @@ namespace Softplan.Domain.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("OfficialLanguage");
-                });
-
-            modelBuilder.Entity("Softplan.Model.Entities.CountryV2", b =>
-                {
-                    b.HasBaseType("Softplan.Model.Entities.Country");
-
-                    b.HasDiscriminator().HasValue("CountryV2");
+                    b.ToTable("OfficialLanguages");
                 });
 
             modelBuilder.Entity("Softplan.Model.Entities.OfficialLanguage", b =>
                 {
-                    b.HasOne("Softplan.Model.Entities.CountryV2", "Country")
+                    b.HasOne("Softplan.Model.Entities.Country", "Country")
                         .WithMany("OfficialLanguages")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
 
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("Softplan.Model.Entities.CountryV2", b =>
+            modelBuilder.Entity("Softplan.Model.Entities.Country", b =>
                 {
                     b.Navigation("OfficialLanguages");
                 });

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Foolproof" Version="0.9.4518" />
     <PackageReference Include="GraphQL.Client" Version="3.2.2" />
     <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
@@ -16,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Implementation\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Request\" />
+    <Folder Include="Validation\" />
   </ItemGroup>
 
 </Project>

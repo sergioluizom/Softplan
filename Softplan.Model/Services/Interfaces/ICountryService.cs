@@ -7,8 +7,11 @@ namespace Softplan.Domain.Services.Interfaces
     public interface ICountryService
     {
         List<Country> Get();
-        Country GetByName(string name);
-        Country GetByCapital(string capital);
+        Task<Country> GetByName(string name);
+        Task<Country> GetByCapital(string capital);
         Task<bool> Add(Country country);
+        Task<bool> Update(Country country);
+        Task<bool> Delete(string id);
+        Task<Country> FindById(string id);
     }
 }

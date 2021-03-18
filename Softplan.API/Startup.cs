@@ -15,7 +15,7 @@ namespace Softplan.API
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
+        {            
             Configuration = configuration;
         }
 
@@ -24,12 +24,12 @@ namespace Softplan.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration["connectionString"]));
             services.AddScoped<IGraphQLClient>(s => new GraphQLHttpClient(Configuration["graphApi"], new NewtonsoftJsonSerializer()));
-            services.ResolveDependencies();
             services.ResolveSwagger();
             services.AddIdentityConfiguration(Configuration);
             services.AddControllers();
+            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("database")));
+            services.ResolveDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,9 +41,9 @@ namespace Softplan.API
             app.UseRouting();
 
             app.UseIdentityConfiguration();
-
+            
             app.UseEndpoints(endpoints =>
-            {
+            {                
                 endpoints.MapControllers();
             });
         }

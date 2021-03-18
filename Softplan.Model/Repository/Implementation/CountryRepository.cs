@@ -1,5 +1,5 @@
-﻿using Softplan.Model.Entities;
-using Softplan.Domain.Repository.Interfaces;
+﻿using Softplan.Domain.Repository.Interfaces;
+using Softplan.Model.Entities;
 using System.Threading.Tasks;
 
 namespace Softplan.Domain.Repository.Implementation
@@ -14,37 +14,23 @@ namespace Softplan.Domain.Repository.Implementation
         public async Task<bool> Add(Country country)
         {
             context.Countrys.Add(country);
-            return await context.SaveChangesAsync() > 0;
-        }
 
-        public Task<bool> AddV2(CountryV2 country)
-        {
-            throw new System.NotImplementedException();
+            return await Task.FromResult(context.SaveChanges() > 0);
         }
-
-        public Task<bool> Delete(string id)
+        public async Task<bool> Delete(string id)
         {
-            throw new System.NotImplementedException();
+            var country = await FindById(id);
+            context.Countrys.Remove(country);
+            return await Task.FromResult(context.SaveChanges() > 0);
         }
-
-        public Task<Country> FindById(string id)
+        public async Task<Country> FindById(string id)
         {
-            throw new System.NotImplementedException();
+            return await Task.FromResult(context.Countrys.Find(id));
         }
-
-        public Task<CountryV2> FindByIdV2(string id)
+        public async Task<bool> Update(Country country)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> Update(Country country)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> UpdateV2(CountryV2 country)
-        {
-            throw new System.NotImplementedException();
+            context.Countrys.Update(country);
+            return await Task.FromResult(context.SaveChanges() > 0);
         }
     }
 }

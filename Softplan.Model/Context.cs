@@ -12,7 +12,7 @@ namespace Softplan.Domain
         }
 
         public DbSet<Country> Countrys { get; set; }
-        public DbSet<CountryV2> CountrysV2 { get; set; }
+        public DbSet<OfficialLanguage> OfficialLanguages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
