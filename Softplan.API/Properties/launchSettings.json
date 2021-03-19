@@ -33,8 +33,7 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
         "apiToken": "d170305cc0e3c3c7704ecae447579724d7134c14",
-        "graphApi": "https://countries-274616.ew.r.appspot.com",
-        "gitProject": "https://github.com/sergioluizom/SCA"
+        "graphApi": "https://countries-274616.ew.r.appspot.com"
       },
       "publishAllPorts": true,
       "useSSL": true
