@@ -29,6 +29,7 @@ namespace Softplan.API
             services.AddIdentityConfiguration(Configuration);
             services.AddControllers();
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("database")));
+            services.AddScoped<Context, Context>();
             services.ResolveDependencies();
         }
 

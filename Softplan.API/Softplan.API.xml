@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Softplan.API</name>
+    </assembly>
+    <members>
+        <member name="T:Softplan.API.Controllers.AuthenticationController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Softplan.API.Controllers.AuthenticationController.#ctor(Microsoft.Extensions.Logging.ILogger{Softplan.API.Controllers.AuthenticationController},Softplan.Domain.Services.Interfaces.ITokenService)">
+            <summary>
+            
+            </summary>
+            <param name="service"></param>
+            <param name="antiCSRFService"></param>
+            <param name="logger"></param>
+        </member>
+    </members>
+</doc>

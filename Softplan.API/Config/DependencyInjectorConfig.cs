@@ -16,8 +16,7 @@ namespace Softplan.API.Config
             services.AddSingleton<ITokenService, TokenService>();
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<ICountryRepository, CountryRepository>();
-            services.AddDbContext<Context>();
-
+            
             return services;
         }
     }

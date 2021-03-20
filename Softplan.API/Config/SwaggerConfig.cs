@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
+using System.Reflection;
+using System.IO;
+using System;
 
 namespace Softplan.API.Config
 {
@@ -14,6 +17,10 @@ namespace Softplan.API.Config
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Softplan.API", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "Please insert Token \r\n\r\nExample: \"Bearer 12345abcdef\"",

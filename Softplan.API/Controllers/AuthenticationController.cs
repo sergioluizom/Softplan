@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Softplan.Domain.Services.Interfaces;
 using System;
@@ -29,6 +30,7 @@ namespace Softplan.API.Controllers
 
         [HttpGet]
         [Route("GetToken")]
+        [AllowAnonymous]
         public ActionResult<dynamic> GetToken()
         {
             try
@@ -39,7 +41,7 @@ namespace Softplan.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError("Erro ao autenticar", ex);
+                logger.LogError("Erro ao autenticar", ex.Message);
                 return BadRequest();
             }
         }
