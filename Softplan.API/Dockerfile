@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
 COPY ["Softplan.API.csproj", "Softplan.API/"]
 RUN dotnet restore "Softplan.API/Softplan.API.csproj"
-COPY . .
+COPY . . 
 WORKDIR "/src/Softplan.API"
 RUN dotnet build "Softplan.API.csproj" -c Release -o /app
 
