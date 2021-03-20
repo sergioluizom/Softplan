@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Softplan.Infra.Interfaces;
+using Softplan.Domain.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Softplan.API.Controllers
 {
@@ -30,19 +27,15 @@ namespace Softplan.API.Controllers
             this.tokenService = tokenService;
         }
 
-        [HttpPost]
-        [Route("login")]
-        public ActionResult<dynamic> Authenticate()
+        [HttpGet]
+        [Route("GetToken")]
+        public ActionResult<dynamic> GetToken()
         {
             try
             {
-                logger.LogInformation("Chamada de Authentication.Authenticate");
-
+                logger.LogInformation("Chamada de Authentication.GetToken");
                 // Gera o Token
-                var token = tokenService.GenerateToken();
-
-                // Retorna os dados
-                return new { token = token };
+                return tokenService.GenerateToken();
             }
             catch (Exception ex)
             {

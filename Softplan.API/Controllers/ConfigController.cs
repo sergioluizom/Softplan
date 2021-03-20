@@ -17,9 +17,9 @@ namespace Softplan.API.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public Task<string> GetTokenBearer()
+        public Task<string> GetGitRepository()
         {
-            return Task.FromResult<string>(configuration.GetValue<string>(""));
+            return Task.FromResult<string>(configuration["gitProject"]);
         }
     }
 }
