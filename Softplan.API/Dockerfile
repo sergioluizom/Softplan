@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Softplan.API/Softplan.API.csproj", "Softplan.API/"]
+COPY ["Softplan.API.csproj", "Softplan.API/"]
 RUN dotnet restore "Softplan.API/Softplan.API.csproj"
 COPY . .
 WORKDIR "/src/Softplan.API"
