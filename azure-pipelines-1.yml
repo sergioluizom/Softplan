@@ -1,7 +1,10 @@
 # Docker
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**./*.sln'
 trigger:
 - develop
 
