@@ -27,16 +27,10 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-    - task: ArchiveFiles@2
+    - task: AzureRmWebAppDeployment@4
       inputs:
-        rootFolderOrFile: '$(Build.BinariesDirectory)'
-        includeRootFolder: true
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        replaceExistingArchive: true
-    - task: DownloadBuildArtifacts@0
-      inputs:
-          buildType: 'current'
-          downloadType: 'single'
-          artifactName: 'pacote'
-          downloadPath: '$(System.ArtifactsDirectory)'
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Assinatura do Azure 1(a46c3bcb-6fa5-4c97-bada-d174ca943b30)'
+        appType: 'webApp'
+        WebAppName: 'SoftplanAPI20210321110617'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
