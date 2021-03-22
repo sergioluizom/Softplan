@@ -38,9 +38,9 @@ namespace Softplan.API.Config
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Softplan.API v1"));
-            }
 
             return app;
         }

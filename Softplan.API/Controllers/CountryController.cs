@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Softplan.Domain.Services.Interfaces;
 using Softplan.Model.Entities;
 using System;
@@ -16,16 +17,21 @@ namespace Softplan.API.Controllers
     public class CountryController : ControllerBase
     {
         private readonly ICountryService _countryService;
-
-        public CountryController(ICountryService countryService)
+        private readonly ILogger<CountryController> logger;
+        public CountryController(ICountryService countryService, ILogger<CountryController> logger)
         {
             _countryService = countryService;
+            this.logger = logger;
         }
         // GET: api/<CountryController>
         [HttpGet]
-        public IEnumerable<Country> Get()
+        public ActionResult Get()
         {
-            return _countryService.Get();
+            logger.LogInformation("Call CountryController.Get");
+            var result = _countryService.Get();
+            if (result.Count == 0 || result == null)
+                return new NotFoundResult();
+            return new OkObjectResult(result);
         }
 
         // GET: api/GetByName
@@ -33,6 +39,7 @@ namespace Softplan.API.Controllers
         [Route("GetByName")]
         public async Task<Country> GetByName([FromQuery] string name)
         {
+            logger.LogInformation("Call CountryController.GetByName");
             return await _countryService.GetByName(name);
         }
 
@@ -42,6 +49,7 @@ namespace Softplan.API.Controllers
         [Route("GetByCapital")]
         public async Task<Country> GetByCapital([FromQuery] string capital)
         {
+            logger.LogInformation("Call CountryController.GetByCapital");
             return await _countryService.GetByCapital(capital);
         }
 
@@ -49,6 +57,7 @@ namespace Softplan.API.Controllers
         [HttpGet("{id}")]
         public async Task<Country> Get(string id)
         {
+            logger.LogInformation($"Call CountryController.Get/{id}");
             return await _countryService.FindById(id);
         }
 
@@ -56,6 +65,7 @@ namespace Softplan.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] Country country)
         {
+            logger.LogInformation($"Call CountryController.Post");
             try
             {
                 if (!country.Validate(country))
@@ -76,7 +86,7 @@ namespace Softplan.API.Controllers
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] Country country)
         {
-
+            logger.LogInformation($"Call CountryController.Put");
             try
             {
                 if (!country.Validate(country))
@@ -97,6 +107,7 @@ namespace Softplan.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
+            logger.LogInformation($"Call CountryController.Delete/{id}");
             try
             {
                 return new OkObjectResult(await _countryService.Delete(id));
