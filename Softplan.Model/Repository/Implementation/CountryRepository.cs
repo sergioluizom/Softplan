@@ -1,5 +1,7 @@
 ﻿using Softplan.Domain.Repository.Interfaces;
 using Softplan.Model.Entities;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Softplan.Domain.Repository.Implementation
@@ -27,6 +29,12 @@ namespace Softplan.Domain.Repository.Implementation
         {
             return await Task.FromResult(context.Countrys.Find(id));
         }
+
+        public async Task<List<Country>> Get()
+        {
+            return await Task.FromResult(context.Countrys.ToList());
+        }
+
         public async Task<bool> Update(Country country)
         {
             context.Countrys.Update(country);

@@ -25,10 +25,10 @@ namespace Softplan.API.Controllers
         }
         // GET: api/<CountryController>
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult> Get()
         {
             logger.LogInformation("Call CountryController.Get");
-            var result = _countryService.Get();
+            var result = await _countryService.Get();
             if (result.Count == 0 || result == null)
                 return new NotFoundResult();
             return new OkObjectResult(result);
@@ -93,7 +93,7 @@ namespace Softplan.API.Controllers
                     return new BadRequestObjectResult(ModelState);
                 else
                 {
-                    await _countryService.Add(country);
+                    await _countryService.Update(country);
                     return new OkResult();
                 }
             }

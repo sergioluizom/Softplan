@@ -1,4 +1,5 @@
 ﻿using Softplan.Model.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Softplan.Domain.Repository.Interfaces
@@ -9,5 +10,6 @@ namespace Softplan.Domain.Repository.Interfaces
         Task<bool> Update(Country country);
         Task<bool> Delete(string id);
         Task<Country> FindById(string id);
+        Task<List<Country>> Get();
     }
 }

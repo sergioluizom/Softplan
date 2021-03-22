@@ -101,10 +101,16 @@ Country {
             };
         }
 
-        public List<Country> Get()
+        public async Task<List<Country>> Get()
         {
+            var result = this.countryRepository.Get();
             var respone = _client.SendQueryAsync<ResponseCountryCollection>(QueryGetCountry()).GetAwaiter().GetResult();
-            return respone.Data.Country;
+            if (respone.Data.Country != null)
+            {
+                respone.Data.Country.ForEach(x => x.IsApi = true);
+                return result.Result.Union(respone.Data.Country).ToList();
+            }
+            return await result;
         }
 
         public async Task<Country> GetByCapital(string capitalName)
