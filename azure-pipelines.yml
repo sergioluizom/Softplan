@@ -27,10 +27,3 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'Assinatura do Azure 1(a46c3bcb-6fa5-4c97-bada-d174ca943b30)'
-        appType: 'webApp'
-        WebAppName: 'SoftplanAPI20210321110617'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
