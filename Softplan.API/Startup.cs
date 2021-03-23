@@ -30,6 +30,14 @@ namespace Softplan.API
             services.AddControllers();
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("database")));
             services.ResolveDependencies();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +47,7 @@ namespace Softplan.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseIdentityConfiguration();
             
             app.UseEndpoints(endpoints =>

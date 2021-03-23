@@ -17,6 +17,7 @@ namespace Softplan.Model.Entities
         public string Address { get; set; }
         public Version Version { get; set; }
         public bool IsApi { get; set; }
+        public Flag Flag { get; set; }
 
         public bool Validate(Country country)
         {

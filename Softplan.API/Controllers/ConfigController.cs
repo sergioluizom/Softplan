@@ -15,11 +15,28 @@ namespace Softplan.API.Controllers
             this.configuration = configuration;
         }
 
+        /// <summary>
+        /// Obter url do repositório da API
+        /// </summary>
+        /// <returns>Url repositório</returns>
         [AllowAnonymous]
         [HttpGet]
-        public Task<string> GetGitRepository()
+        [Route("GetGitRepositoryApi")]        
+        public Task<string> GetGitRepositoryApi()
         {
-            return Task.FromResult<string>(configuration["gitProject"]);
+            return Task.FromResult<string>(configuration["gitProjectApi"]);
+        }
+
+        /// <summary>
+        /// Obter url do repositório do Front
+        /// </summary>
+        /// <returns>Url repositório</returns>
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetGitRepositoryFront")]
+        public Task<string> GetGitRepositoryFront()
+        {
+            return Task.FromResult<string>(configuration["gitProjectFront"]);
         }
     }
 }
